@@ -4,7 +4,7 @@ from math import sqrt
 def factorial_series(n: int) -> list[int]:
     nums = [1, 1]
     for i in range(2, n + 1):
-        nums.insert(len(nums), nums[i - 1] * i)
+        nums.append(nums[i - 1] * i)
     return nums
 
 
@@ -14,12 +14,12 @@ def is_palindrome(s: str) -> bool:
 
 def sieve(n: int) -> list[int]:
     """https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes"""
-    nums = list(range(2, n + 1))
+    nums = [2]
+    nums.extend(range(3, n + 1, 2))
     i, limit = 2, sqrt(n)
-    while i <= limit:
+    while (i := next(x for x in nums if x > i)) <= limit:
         i2 = i ** 2
         nums = [x for x in nums if x < i2 or x % i != 0]
-        i = next(x for x in nums if x > i)
     return nums
 
 
