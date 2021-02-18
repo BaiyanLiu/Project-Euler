@@ -21,14 +21,14 @@ def get_args():
     # noinspection PyTypeChecker
     argparse.ArgumentParser(
         description='Find the pair of pentagonal numbers, Pj and Pk, for which their sum and difference are '
-                    'pentagonal and D = |Pk − Pj| is minimised; what is the value of D? ',
+                    'pentagonal and D = |Pk − Pj| is minimised; what is the value of D?',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
 
 def main():
     get_args()
     nums = {i * (3 * i - 1) // 2 for i in range(1, 10000)}
-    print(min(j - i for i, j in product(nums, nums) if i + j in nums and j - i in nums))
+    print(min(j - i for i, j in product(nums, nums) if j > i and i + j in nums and j - i in nums))
 
 
 if __name__ == '__main__':
