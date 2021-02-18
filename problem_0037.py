@@ -28,7 +28,7 @@ def get_args():
 def main():
     get_args()
     primes = sieve(1000000)
-    all_primes = list(map(str, primes))
+    all_primes = set(map(str, primes))
     pattern = re.compile('^[2357][1379]*[37]$')
     candidate_primes = [str(p) for p in primes if re.match(pattern, str(p))]
     sums = 0
