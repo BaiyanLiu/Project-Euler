@@ -12,6 +12,16 @@ def is_palindrome(s: str) -> bool:
     return s == s[::-1]
 
 
+def num_factors(n: int, primes: list[int]) -> dict[int, int]:
+    factors = {}
+    # If n = (prime1 ^ a) * (prime2 ^ b), then n has (a + 1) * (b + 1) factors
+    for prime in primes:
+        while n % prime == 0:
+            n /= prime
+            factors[prime] = factors.get(prime, 1) + 1
+    return factors
+
+
 def sieve(n: int) -> list[int]:
     """https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes"""
     nums = [2]

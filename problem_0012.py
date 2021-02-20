@@ -23,8 +23,10 @@ https://projecteuler.net/problem=12
 
 
 import argparse
+import utils
 
-from utils import sieve
+from functools import reduce
+from operator import mul
 
 
 def get_args():
@@ -38,23 +40,11 @@ def get_args():
 
 def main():
     args = get_args()
-    primes = sieve(100)
+    primes = utils.sieve(100)
     x, y = 0, 0
-    while x <= args.n or num_factors(x, primes) <= args.n:
+    while x <= args.n or reduce(mul, utils.num_factors(x, primes).values(), 1) <= args.n:
         x += (y := y + 1)
     print(x)
-
-
-def num_factors(n: int, primes: list[int]) -> int:
-    factors = 1
-    # If n = (prime1 ^ a) * (prime2 ^ b), then n has (a + 1) * (b + 1) factors
-    for prime in primes:
-        exponent = 0
-        while n % prime == 0:
-            n /= prime
-            exponent += 1
-        factors *= exponent + 1
-    return factors
 
 
 if __name__ == '__main__':
