@@ -25,9 +25,9 @@ def get_args():
 
 def main():
     get_args()
-    primes = set([prime for prime in sieve(10000) if prime >= 1000 and prime not in {1487, 4817, 8147}])
+    primes = set([p for p in sieve(10000) if p >= 1000 and p not in {1487, 4817, 8147}])
     for i in primes:
-        for j in [prime for prime in primes if prime > i]:
+        for j in [p for p in primes if p > i]:
             if (k := j + j - i) in primes and sorted(str(i)) == sorted(str(j)) == sorted(str(k)):
                 print(f'{i}{j}{k}')
                 break
