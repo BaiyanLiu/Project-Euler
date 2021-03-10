@@ -287,3 +287,8 @@ def test_0051():
 def test_0052():
     problem = 'problem_0052.py'
     assert getoutput(f'{problem}') == '142857'
+
+
+def test_0053():
+    problem = 'problem_0053.py'
+    assert getoutput(f'{problem}') == '4075'
