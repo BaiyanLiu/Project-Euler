@@ -8,20 +8,10 @@ https://projecteuler.net/problem=41
 """
 
 
-import argparse
-
 from utils import sieve
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='What is the largest n-digit pandigital prime that exists?',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     primes = reversed(sieve(7654321))
     print(next(p for p in primes if is_pandigital(p)))
 

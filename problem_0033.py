@@ -13,21 +13,10 @@ https://projecteuler.net/problem=33
 """
 
 
-import argparse
-
 from itertools import product
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='If the product of four non-trivial fractions is given in its lowest common terms, find the value '
-                    'of the denominator.',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     prod = 1
     for i, j in product(range(1, 10), range(1, 10)):
         if i == j:

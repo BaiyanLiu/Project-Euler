@@ -11,20 +11,10 @@ https://projecteuler.net/problem=49
 """
 
 
-import argparse
-
 from utils import sieve
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='What 12-digit number do you form by concatenating the three terms in this sequence?',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     primes = set([p for p in sieve(10000) if p >= 1000 and p not in {1487, 4817, 8147}])
     for i in primes:
         for j in [p for p in primes if p > i]:

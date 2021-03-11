@@ -31,24 +31,12 @@ https://projecteuler.net/problem=11
 """
 
 
-import argparse
-
 from functools import reduce
 from math import sqrt
 from operator import mul
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='What is the greatest product of four adjacent numbers in the same direction (up, down, left, '
-                    'right, or diagonally) in the 20×20 grid?',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
-
     nums = """
     08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
     49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -83,7 +71,7 @@ def main():
         down = reduce(mul, nums[i:i + width * 3 + 1:width]) if has_down else 0
         right = reduce(mul, nums[i:i + 4]) if has_right else 0
         down_right = reduce(mul, nums[i:i + (width + 1) * 3 + 1:width + 1]) if has_down and has_right else 0
-        down_left = reduce(mul, nums[i:i + (width - 1) * 3 + 1:width - 1]) if has_down and  has_left else 0
+        down_left = reduce(mul, nums[i:i + (width - 1) * 3 + 1:width - 1]) if has_down and has_left else 0
 
         max_prod = max(max_prod, down, right, down_right, down_left)
     print(max_prod)

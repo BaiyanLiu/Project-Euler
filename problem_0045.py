@@ -12,18 +12,7 @@ https://projecteuler.net/problem=45
 """
 
 
-import argparse
-
-
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='Find the next triangle number that is also pentagonal and hexagonal.',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     tri_nums = {i * (i + 1) // 2 for i in range(286, 100000)}
     pen_nums = {i * (3 * i - 1) // 2 for i in range(166, 100000)}
     hex_nums = {i * (2 * i - 1) for i in range(144, 100000)}

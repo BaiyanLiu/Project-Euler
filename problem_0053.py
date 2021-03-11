@@ -15,21 +15,10 @@ https://projecteuler.net/problem=53
 """
 
 
-import argparse
-
 from utils import factorial_series
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='How many, not necessarily distinct, values of (n r) for 1 <= n <= 100, are greater than '
-                    'one-million?',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     nums = factorial_series(100)
     print(sum(1 for i in range(23, 101) for j in range(i + 1) if nums[i] // (nums[j] * nums[i - j]) > 1000000))
 

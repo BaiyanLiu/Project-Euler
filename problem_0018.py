@@ -35,19 +35,7 @@ https://projecteuler.net/problem=18
 """
 
 
-import argparse
-
-
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='Find the maximum total from top to bottom of the triangle below.',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
-
     nums = """
     75
     95 64

@@ -18,20 +18,10 @@ https://projecteuler.net/problem=43
 """
 
 
-import argparse
-
 from itertools import product
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='Find the sum of all 0 to 9 pandigital numbers with this property.',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     rules = {(1, 2, 3): 2, (2, 3, 4): 3, (3, 4, 5): 5, (4, 5, 6): 7,
              (5, 6, 7): 11, (6, 7, 8): 13, (7, 8, 9): 17}
     sums = 0

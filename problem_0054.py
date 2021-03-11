@@ -46,16 +46,6 @@ https://projecteuler.net/problem=54
 """
 
 
-import argparse
-
-
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='How many hands does Player 1 win?',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 class Card:
     def __init__(self, card):
         self.value = card[:2]
@@ -66,7 +56,6 @@ class Card:
 
 
 def main():
-    get_args()
     card_trans = str.maketrans({'T': '10', 'J': '11', 'Q': '12', 'K': '13', 'A': '14'})
     hands = open('p054_poker.txt').read().translate(card_trans).rstrip().split('\n')
     count = 0

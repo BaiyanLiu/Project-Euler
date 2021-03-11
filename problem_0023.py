@@ -17,22 +17,12 @@ https://projecteuler.net/problem=23
 """
 
 
-import argparse
 import utils
 
 from itertools import product
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='Find the sum of all the positive integers which cannot be written as the sum of two abundant '
-                    'numbers.',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     nums = utils.sum_divisors(28123)
     abundant_nums = {i: nums[i] for i in nums.keys() if i < nums[i]}
     sums = {i + j for i, j in product(abundant_nums, abundant_nums) if j >= i and i + j <= 28123}

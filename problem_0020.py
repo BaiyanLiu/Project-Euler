@@ -12,7 +12,7 @@ https://projecteuler.net/problem=20
 
 import argparse
 
-from math import  factorial
+from math import factorial
 
 
 def get_args():

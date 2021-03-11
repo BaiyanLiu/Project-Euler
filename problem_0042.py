@@ -14,19 +14,7 @@ https://projecteuler.net/problem=42
 """
 
 
-import argparse
-
-
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='Using words.txt, a 16K text file containing nearly two-thousand common English words, how many '
-                    'are triangle words?',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     words = open('p042_words.txt').read().replace('"', '').split(',')
     triangle_nums = [i * (i + 1) // 2 for i in range(1, 101)]
     offset = ord('A') - 1

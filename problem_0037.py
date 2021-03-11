@@ -11,22 +11,12 @@ https://projecteuler.net/problem=37
 """
 
 
-import argparse
 import re
 
 from utils import sieve
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='Find the sum of the only eleven primes that are both truncatable from left to right and right to '
-                    'left.',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     primes = sieve(1000000)
     all_primes = set(map(str, primes))
     pattern = re.compile('^[2357][1379]*[37]$')

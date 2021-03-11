@@ -12,19 +12,7 @@ https://projecteuler.net/problem=32
 """
 
 
-import argparse
-
-
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='Find the sum of all products whose multiplicand/multiplier/product identity can be written as a '
-                    '1 through 9 pandigital.',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     nums = set()
     for i in range(1, 9876):
         if i % 10 <= 1:

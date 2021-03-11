@@ -17,20 +17,10 @@ https://projecteuler.net/problem=46
 """
 
 
-import argparse
 import utils
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='What is the smallest odd composite that cannot be written as the sum of a prime and twice a '
-                    'square?',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     primes = utils.sieve(10000)
     squares = {i ** 2 * 2 for i in range(1, 100)}
     divisors = utils.sum_divisors(10000)

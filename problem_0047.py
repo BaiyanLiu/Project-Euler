@@ -16,20 +16,10 @@ https://projecteuler.net/problem=47
 """
 
 
-import argparse
 import utils
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='Find the first four consecutive integers to have four distinct prime factors each. What is the '
-                    'first of these numbers?',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     primes = utils.sieve(5000)
     num_factors = [len(utils.num_factors(i, primes)) for i in range(210, 214)]
     for i in range(214, 1000000):

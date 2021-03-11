@@ -8,18 +8,7 @@ https://projecteuler.net/problem=52
 """
 
 
-import argparse
-
-
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='Find the smallest positive integer, x, such that 2x, 3x, 4x, 5x, and 6x, contain the same digits.',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     print(next(i for i in range(1, 200000) if all(sorted(str(i * j)) == sorted(str(i)) for j in range(2, 7))))
 
 

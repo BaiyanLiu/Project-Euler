@@ -22,20 +22,10 @@ https://projecteuler.net/problem=27
 """
 
 
-import argparse
 import math
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='Find the product of the coefficients, a and b, for the quadratic expression that produces the '
-                    'maximum number of primes for consecutive values of n, starting with n = 0.',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     c = math.ceil(math.sqrt(1000 + 41))
     # Maximize (x - c) ^ 2 + (x - c) + 41
     while c ** 2 - c + 41 >= 1000:

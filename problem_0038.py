@@ -18,19 +18,7 @@ https://projecteuler.net/problem=38
 """
 
 
-import argparse
-
-
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='What is the largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated '
-                    'product of an integer with (1,2, ... , n) where n > 1?',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     max_num = 0
     for i in range(1, 9876):
         num = ''

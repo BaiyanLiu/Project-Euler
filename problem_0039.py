@@ -10,20 +10,10 @@ https://projecteuler.net/problem=39
 """
 
 
-import argparse
-
 from math import sqrt
 
 
-def get_args():
-    # noinspection PyTypeChecker
-    argparse.ArgumentParser(
-        description='For which value of p ≤ 1000, is the number of solutions maximised?',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-
 def main():
-    get_args()
     solutions = {}
     for a in range(1, 996):
         for b in range(a + 1, 998):
