@@ -36,7 +36,7 @@ def main():
             break
 
 
-def is_prime(n: int, primes: list[int]) -> int:
+def is_prime(n: int, primes: list[int]) -> bool:
     """https://en.wikipedia.org/wiki/Primality_test"""
     if n < 2:
         return False
