@@ -24,9 +24,7 @@ def get_args():
 
 def main():
     args = get_args()
-    multiples_a = multiples(args.a, args.n)
-    multiples_b = multiples(args.b, args.n)
-    print(sum(multiples_a.union(multiples_b)))
+    print(sum(multiples(args.a, args.n) | multiples(args.b, args.n)))
 
 
 def multiples(x: int, n: int) -> set[int]:

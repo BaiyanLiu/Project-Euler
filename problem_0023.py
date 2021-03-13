@@ -17,9 +17,9 @@ https://projecteuler.net/problem=23
 """
 
 
-import utils
-
 from itertools import product
+
+import utils
 
 
 def main():

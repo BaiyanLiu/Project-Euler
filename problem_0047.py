@@ -16,9 +16,9 @@ https://projecteuler.net/problem=47
 """
 
 
-import utils
-
 from itertools import count
+
+import utils
 
 
 def main():

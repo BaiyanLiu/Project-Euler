@@ -12,6 +12,19 @@ def is_palindrome(s: str) -> bool:
     return s == s[::-1]
 
 
+def is_prime(n: int, primes: list[int]) -> bool:
+    """https://en.wikipedia.org/wiki/Primality_test"""
+    if n < 2:
+        return False
+    limit = sqrt(n)
+    for prime in primes:
+        if prime > limit:
+            break
+        if n % prime == 0:
+            return False
+    return True
+
+
 def num_factors(n: int, primes: list[int]) -> dict[int, int]:
     factors = {}
     # If n = (prime1 ^ a) * (prime2 ^ b), then n has (a + 1) * (b + 1) factors

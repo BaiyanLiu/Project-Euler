@@ -8,10 +8,10 @@ https://projecteuler.net/problem=5
 
 
 import argparse
-
 from functools import reduce
 from operator import mul
 from sys import maxsize
+
 from utils import sieve
 
 

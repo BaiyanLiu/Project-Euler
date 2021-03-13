@@ -23,10 +23,10 @@ https://projecteuler.net/problem=12
 
 
 import argparse
-import utils
-
 from functools import reduce
 from operator import mul
+
+import utils
 
 
 def get_args():

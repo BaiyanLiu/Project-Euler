@@ -21,32 +21,19 @@ https://projecteuler.net/problem=58
 
 
 from itertools import count
-from math import sqrt
-from utils import sieve
+
+import utils
 
 
 def main():
-    primes = sieve(100000)
+    primes = utils.sieve(100000)
     num_primes = 0
     for i in count(3, 2):
         i2 = i ** 2
-        num_primes += sum(1 for k in (i2 - (i - 1) * j for j in range(1, 4)) if is_prime(k, primes))
+        num_primes += sum(1 for k in (i2 - (i - 1) * j for j in range(1, 4)) if utils.is_prime(k, primes))
         if num_primes / (i * 2 - 1) < 0.1:
             print(i)
             break
-
-
-def is_prime(n: int, primes: list[int]) -> bool:
-    """https://en.wikipedia.org/wiki/Primality_test"""
-    if n < 2:
-        return False
-    limit = sqrt(n)
-    for prime in primes:
-        if prime > limit:
-            break
-        if n % prime == 0:
-            return False
-    return True
 
 
 if __name__ == '__main__':
