@@ -24,7 +24,7 @@ def get_args():
         description='Find the smallest prime which, by replacing part of the number (not necessarily adjacent digits) '
                     'with the same digit, is part of an n prime value family.',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('n', type=int, help='The number of primes')
+    parser.add_argument('n', type=int, help='Number of primes')
     return parser.parse_args()
 
 

@@ -21,7 +21,7 @@ def get_args():
         description='Find the lowest sum for a set of n primes for which any two primes concatenate to produce '
                     'another prime.',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('n', type=int, help='The number of primes')
+    parser.add_argument('n', type=int, help='Number of primes')
     return parser.parse_args()
 
 
