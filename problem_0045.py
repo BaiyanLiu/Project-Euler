@@ -12,11 +12,14 @@ https://projecteuler.net/problem=45
 """
 
 
+import utils
+
+
 def main():
-    tri_nums = {i * (i + 1) // 2 for i in range(286, 100000)}
-    pen_nums = {i * (3 * i - 1) // 2 for i in range(166, 100000)}
-    hex_nums = {i * (2 * i - 1) for i in range(144, 100000)}
-    print(min(tri_nums.intersection(pen_nums).intersection(hex_nums)))
+    tri_nums = utils.triangle_nums(286, 100000)
+    pen_nums = utils.pentagonal_nums(166, 100000)
+    hex_nums = utils.hexagonal_nums(144, 100000)
+    print(min(tri_nums & pen_nums & hex_nums))
 
 
 if __name__ == '__main__':

@@ -8,6 +8,10 @@ def factorial_series(n: int) -> list[int]:
     return nums
 
 
+def hexagonal_nums(start: int, end: int) -> set[int]:
+    return {i * (2 * i - 1) for i in range(start, end)}
+
+
 def is_palindrome(s: str) -> bool:
     return s == s[::-1]
 
@@ -35,6 +39,10 @@ def num_factors(n: int, primes: list[int]) -> dict[int, int]:
     return factors
 
 
+def pentagonal_nums(start: int, end: int) -> set[int]:
+    return {i * (3 * i - 1) // 2 for i in range(start, end)}
+
+
 def sieve(n: int) -> list[int]:
     """https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes"""
     nums = [2]
@@ -56,3 +64,7 @@ def sum_divisors(n: int) -> dict[int, int]:
 
 def sum_series(n: int) -> int:
     return (n + 1) * n // 2
+
+
+def triangle_nums(start: int, end: int) -> set[int]:
+    return {i * (i + 1) // 2 for i in range(start, end)}
