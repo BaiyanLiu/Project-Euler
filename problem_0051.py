@@ -48,8 +48,7 @@ def find_group_start_all(curr: int, digits: list[int], max_digits, primes: list[
 def find_group_start(digits: list[int], max_digits: int, primes: list[int], n: int) -> int:
     for i in map(str, range(10)):
         curr = digits[-1]
-        primes_sub = [p for p in primes if str(p)[curr] == i]
-        if len(primes_sub) >= n:
+        if len(primes_sub := [p for p in primes if str(p)[curr] == i]) >= n:
             if len(group := [p for p in primes_sub if has_same_digits(p, digits)]) == n:
                 return group[0]
             elif group_start := find_group_start_all(curr, digits, max_digits, primes_sub, n):
