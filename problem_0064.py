@@ -68,7 +68,7 @@ def len_cycle(i: int, a0: int, params: list[Params]) -> int:
     m = prev.d * prev.a - prev.m
     if (d := (i - m ** 2) // prev.d) == 0:
         return 0
-    a = int((a0 + m) / d)
+    a = (a0 + m) // d
     if (curr := Params(m, d, a)) in params:
         return len(params) - 1
     else:

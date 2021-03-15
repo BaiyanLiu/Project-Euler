@@ -27,7 +27,7 @@ def main():
 
 def find_value(index: int, digit_groups: list[int]) -> int:
     i = next(i for i in range(len(digit_groups) - 1, -1, -1) if index >= digit_groups[i])
-    num = str(int(10 ** i + (offset := index - digit_groups[i]) / (i + 1)))
+    num = str(10 ** i + (offset := index - digit_groups[i]) // (i + 1))
     return int(num[offset % (i + 1)])
 
 
