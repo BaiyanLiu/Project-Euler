@@ -13,7 +13,7 @@ https://projecteuler.net/problem=22
 
 
 def main():
-    names = sorted(open('p022_names.txt').read().replace('"', '').split(','))
+    names = sorted(open('input/p022_names.txt').read().replace('"', '').split(','))
     sums = 0
     offset = ord('A') - 1
     for i in range(len(names)):

@@ -57,7 +57,7 @@ class Card:
 
 def main():
     card_trans = str.maketrans({'T': '10', 'J': '11', 'Q': '12', 'K': '13', 'A': '14'})
-    hands = open('p054_poker.txt').read().translate(card_trans).rstrip().split('\n')
+    hands = open('input/p054_poker.txt').read().translate(card_trans).rstrip().split('\n')
     count = 0
     for hand in hands:
         hand = [Card(c.zfill(3)) for c in hand.split(' ')]

@@ -25,9 +25,9 @@ def get_args():
 
 def main():
     args = get_args()
-    numerator = reduce(mul, range(args.n + 1, args.n * 2 + 1))
-    denominator = reduce(mul, range(2, args.n + 1))
-    print(numerator // denominator)
+    num = reduce(mul, range(args.n + 1, args.n * 2 + 1))
+    denom = reduce(mul, range(2, args.n + 1))
+    print(num // denom)
 
 
 if __name__ == '__main__':

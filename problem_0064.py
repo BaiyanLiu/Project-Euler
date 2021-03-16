@@ -19,14 +19,14 @@ The first ten continued fraction representations of (irrational) square roots ar
 
 sqrt(2) = [1;(2)], period=1
 sqrt(3) = [1;(1,2)], period=2
-sqrt(5) = [1;(4)], period=1
-sqrt(6) = [1;(2,4)], period=2
-sqrt(7) = [1;(1,1,1,4)], period=4
-sqrt(8) = [1;(1,4)], period=2
-sqrt(10) = [1;(6)], period=1
-sqrt(11) = [1;(3,6)], period=2
-sqrt(12) = [1;(2,6)], period=2
-sqrt(13) = [1;(1,1,1,1,6)], period=5
+sqrt(5) = [2;(4)], period=1
+sqrt(6) = [2;(2,4)], period=2
+sqrt(7) = [2;(1,1,1,4)], period=4
+sqrt(8) = [2;(1,4)], period=2
+sqrt(10) = [3;(6)], period=1
+sqrt(11) = [3;(3,6)], period=2
+sqrt(12) = [3;(2,6)], period=2
+sqrt(13) = [3;(1,1,1,1,6)], period=5
 
 Exactly four continued fractions, for N <= 13, have an odd period.
 
@@ -37,9 +37,10 @@ https://projecteuler.net/problem=64
 
 
 import argparse
-from typing import NamedTuple
+from math import sqrt
 
-from utils import sqrt
+import utils
+from utils import ContinuedFractionParams as Params
 
 
 def get_args():
@@ -51,25 +52,15 @@ def get_args():
     return parser.parse_args()
 
 
-class Params(NamedTuple):
-    m: int
-    d: int
-    a: int
-
-
 def main():
     args = get_args()
     print(sum(1 for i in range(2, args.n + 1) if len_cycle(i, a0 := int(sqrt(i)), [Params(0, 1, a0)]) % 2 != 0))
 
 
 def len_cycle(i: int, a0: int, params: list[Params]) -> int:
-    """https://en.wikipedia.org/wiki/Periodic_continued_fraction"""
-    prev = params[-1]
-    m = prev.d * prev.a - prev.m
-    if (d := (i - m ** 2) // prev.d) == 0:
+    if not (curr := utils.continued_fraction_next_params(i, a0, params[-1])):
         return 0
-    a = (a0 + m) // d
-    if (curr := Params(m, d, a)) in params:
+    elif curr in params:
         return len(params) - 1
     else:
         return len_cycle(i, a0, params + [curr])

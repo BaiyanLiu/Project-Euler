@@ -32,6 +32,8 @@ https://projecteuler.net/problem=65
 
 import argparse
 
+from utils import continued_fraction_num_denom
+
 
 def get_args():
     # noinspection PyTypeChecker
@@ -44,7 +46,8 @@ def get_args():
 
 def main():
     args = get_args()
-    print(sum(map(int, str(num_denom(0, args.n - 1)[0]))))
+    a = list(map(get_a, range(args.n)))
+    print(sum(map(int, str(continued_fraction_num_denom(0, args.n - 1, a)[0]))))
 
 
 def get_a(n: int) -> int:
@@ -54,15 +57,6 @@ def get_a(n: int) -> int:
         return (n // 3 + 1) * 2
     else:
         return 1
-
-
-def num_denom(i: int, n: int) -> (int, int):
-    """https://en.wikipedia.org/wiki/Continued_fraction"""
-    if i == n:
-        return get_a(i), 1
-    else:
-        num, denom = num_denom(i + 1, n)
-        return get_a(i) * num + denom, num
 
 
 if __name__ == '__main__':

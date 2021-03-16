@@ -27,7 +27,7 @@ from itertools import product
 
 
 def main():
-    encrypted = list(map(int, open('p059_cipher.txt').read().split(',')))
+    encrypted = list(map(int, open('input/p059_cipher.txt').read().split(',')))
     invalid_chars = {ord('`'), ord('~')}
     key_range = range(ord('a'), ord('z') + 1)
     for key in product(key_range, key_range, key_range):

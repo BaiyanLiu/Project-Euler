@@ -28,7 +28,7 @@ import utils
 
 def main():
     tri_nums = utils.triangle_nums(45, 141)
-    sqr_nums = {i ** 2 for i in range(32, 100)}
+    sqr_nums = utils.square_nums(32, 100)
     pen_nums = utils.pentagonal_nums(26, 82)
     hex_nums = utils.hexagonal_nums(23, 71)
     hep_nums = {i * (5 * i - 3) // 2 for i in range(21, 64)}

@@ -1,4 +1,29 @@
 from math import sqrt
+from typing import NamedTuple, Optional
+
+
+class ContinuedFractionParams(NamedTuple):
+    m: int
+    d: int
+    a: int
+
+
+def continued_fraction_next_params(i: int, a0: int, prev: ContinuedFractionParams) -> Optional[ContinuedFractionParams]:
+    """https://en.wikipedia.org/wiki/Periodic_continued_fraction"""
+    m = prev.d * prev.a - prev.m
+    if (d := (i - m ** 2) // prev.d) == 0:
+        return None
+    a = (a0 + m) // d
+    return ContinuedFractionParams(m, d, a)
+
+
+def continued_fraction_num_denom(i: int, n: int, a: list[int]) -> (int, int):
+    """https://en.wikipedia.org/wiki/Continued_fraction"""
+    if i == n:
+        return a[i], 1
+    else:
+        num, denom = continued_fraction_num_denom(i + 1, n, a)
+        return a[i] * num + denom, num
 
 
 def factorial_series(n: int) -> list[int]:
@@ -52,6 +77,10 @@ def sieve(n: int) -> list[int]:
         i2 = i ** 2
         nums = [x for x in nums if x < i2 or x % i != 0]
     return nums
+
+
+def square_nums(start: int, end: int) -> set[int]:
+    return {i ** 2 for i in range(start, end)}
 
 
 def sum_divisors(n: int) -> dict[int, int]:
