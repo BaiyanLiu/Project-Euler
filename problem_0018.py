@@ -35,6 +35,9 @@ https://projecteuler.net/problem=18
 """
 
 
+from utils import max_sum_triangle
+
+
 def main():
     nums = """
     75
@@ -56,14 +59,7 @@ def main():
 
     nums = list(map(int, nums.split()))
     sums = nums[len(nums) - 15:]
-    print(sum_row(len(nums) - 15 - 14, 13, nums, sums)[0])
-
-
-def sum_row(index: int, next_row_length: int, nums: list[int], sums: list[int]) -> list[int]:
-    sums = [max(sums[i], sums[i + 1]) + nums[index + i] for i in range(len(sums) - 1)]
-    if len(sums) > 1:
-        sums = sum_row(index - next_row_length, next_row_length - 1, nums, sums)
-    return sums
+    print(max_sum_triangle(len(nums) - 15 - 14, 13, nums, sums)[0])
 
 
 if __name__ == '__main__':

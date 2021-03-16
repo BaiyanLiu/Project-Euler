@@ -54,6 +54,13 @@ def is_prime(n: int, primes: list[int]) -> bool:
     return True
 
 
+def max_sum_triangle(index: int, next_row_length: int, nums: list[int], sums: list[int]) -> list[int]:
+    sums = [max(sums[i], sums[i + 1]) + nums[index + i] for i in range(len(sums) - 1)]
+    if len(sums) > 1:
+        sums = max_sum_triangle(index - next_row_length, next_row_length - 1, nums, sums)
+    return sums
+
+
 def num_factors(n: int, primes: list[int]) -> dict[int, int]:
     factors = {}
     # If n = (prime1 ^ a) * (prime2 ^ b), then n has (a + 1) * (b + 1) factors
