@@ -42,7 +42,7 @@ def get_args():
 
 def main():
     args = get_args()
-    sqr_nums = utils.square_nums(2, 32)
+    sqr_nums = utils.square_nums(2, int(sqrt(args.n)) + 1)
     max_d, max_x = 0, 0
     for d in [i for i in range(2, args.n + 1) if i not in sqr_nums]:
         if (x := first_x(d)) > max_x:
