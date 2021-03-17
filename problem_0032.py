@@ -22,7 +22,8 @@ def main():
         for j in range(i, 9876):
             if (prod := i * j) > 9876 or j % 10 <= 1:
                 continue
-            if len(num_str := str(i) + str(j) + str(prod)) == len(''.join(set(num_str))) == 9 and '0' not in num_str:
+            num_str = str(i) + str(j) + str(prod)
+            if len(num_str) == len(''.join(set(num_str))) == 9 and '0' not in num_str:
                 nums.add(prod)
     print(sum(nums))
 

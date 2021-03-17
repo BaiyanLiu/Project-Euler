@@ -24,7 +24,9 @@ def main():
     args = get_args()
     perms = {}
     for i in range(2, 10000):
-        perms[k] = perms.get(k := ''.join(sorted(str(i ** 3))), []) + [i]
+        if (k := ''.join(sorted(str(i ** 3)))) not in perms:
+            perms[k] = []
+        perms[k].append(i)
     print(next(v[0] ** 3 for v in perms.values() if len(v) == args.n))
 
 

@@ -25,8 +25,8 @@ def get_args():
 def main():
     args = get_args()
     max_num = 0
-    for i in range(int(10 ** (args.n - 1)), lim := int(10 ** args.n)):
-        for j in range(i, lim):
+    for i in range(int(10 ** (args.n - 1)), limit := int(10 ** args.n)):
+        for j in range(i, limit):
             if (num := i * j) > max_num and is_palindrome(str(num)):
                 max_num = num
     print(max_num)

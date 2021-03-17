@@ -67,7 +67,8 @@ def arrange_nums(nums: list[int]) -> str:
     for i in range(1, len(nums) // 2 - 1):
         groups += [[nums[(start := i * 2) + 1], nums[start], nums[start + 2]]]
     groups += [[nums[-1], nums[-2], nums[1]]]
-    return groups_to_str(groups[(min_index := groups.index(min(groups))):]) + groups_to_str(groups[:min_index])
+    min_index = groups.index(min(groups))
+    return groups_to_str(groups[min_index:]) + groups_to_str(groups[:min_index])
 
 
 def groups_to_str(nums: list[list[int]]) -> str:

@@ -24,7 +24,7 @@ import utils
 
 def main():
     nums = utils.sum_divisors(28123)
-    abundant_nums = {i: nums[i] for i in nums.keys() if i < nums[i]}
+    abundant_nums = [i for i in nums.keys() if i < nums[i]]
     sums = {i + j for i, j in product(abundant_nums, abundant_nums) if j >= i and i + j <= 28123}
     print(utils.sum_series(28123) - sum(sums))
 
