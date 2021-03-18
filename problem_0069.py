@@ -22,7 +22,6 @@ https://projecteuler.net/problem=69
 
 
 import argparse
-from math import sqrt
 
 import utils
 
@@ -38,16 +37,31 @@ def get_args():
 
 def main():
     args = get_args()
-    limit = int(sqrt(args.a)) + 1
-    primes = utils.sieve(limit)
-    factors, totient = {}, {}
-    for i in range(2, limit):
-        factors[i] = utils.num_factors(i, primes).keys()
-        if i not in totient:
-            relative_primes = [j for j in range(2, i) if len(factors[i] & factors[j]) == 0]
-            totient[i] = len(relative_primes) + 1
-            totient.update({i * p: totient[i] * totient[p] for p in relative_primes})
-    print(max(values := {k: k / v for k, v in totient.items()}, key=values.get))
+    print(max(values := {n: n / phi for n, phi in totients(args.a).items()}, key=values.get))
+
+
+def totients(n: int) -> dict[int, int]:
+    """https://en.wikipedia.org/wiki/Euler's_totient_function"""
+    primes = utils.sieve(n)
+    primes_set = set(primes)
+    values = {}
+    for i in range(2, n + 1):
+        if i not in values:
+            if i in primes_set:
+                values[i] = i - 1
+                for j in range(2, i):
+                    if (k := i * j) >= n:
+                        break
+                    values[k] = values[i] * values[j]
+            else:
+                phi = 1
+                for k, v in utils.num_factors(i, primes).items():
+                    phi *= values[k] * k ** (v - 2)
+                values[i] = phi
+            j = 1
+            while (k := i ** (j := j + 1)) < n:
+                values[k] = values[i] * i ** (j - 1)
+    return values
 
 
 if __name__ == '__main__':

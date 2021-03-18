@@ -41,6 +41,11 @@ def is_palindrome(s: str) -> bool:
     return s == s[::-1]
 
 
+def is_permutation(*n: int) -> bool:
+    n0 = sorted(str(n[0]))
+    return all(sorted(str(i)) == n0 for i in n[1:])
+
+
 def is_prime(n: int, primes: list[int]) -> bool:
     """https://en.wikipedia.org/wiki/Primality_test"""
     if n < 2:
@@ -54,10 +59,10 @@ def is_prime(n: int, primes: list[int]) -> bool:
     return True
 
 
-def max_sum_triangle(index: int, next_row_length: int, nums: list[int], sums: list[int]) -> list[int]:
+def max_sum_triangle(index: int, next_row_size: int, nums: list[int], sums: list[int]) -> list[int]:
     sums = [max(sums[i], sums[i + 1]) + nums[index + i] for i in range(len(sums) - 1)]
     if len(sums) > 1:
-        sums = max_sum_triangle(index - next_row_length, next_row_length - 1, nums, sums)
+        sums = max_sum_triangle(index - next_row_size, next_row_size - 1, nums, sums)
     return sums
 
 
@@ -65,6 +70,8 @@ def num_factors(n: int, primes: list[int]) -> dict[int, int]:
     factors = {}
     # If n = (prime1 ^ a) * (prime2 ^ b), then n has (a + 1) * (b + 1) factors
     for prime in primes:
+        if n == 1:
+            break
         while n % prime == 0:
             n /= prime
             factors[prime] = factors.get(prime, 1) + 1
@@ -77,13 +84,13 @@ def pentagonal_nums(start: int, end: int) -> set[int]:
 
 def sieve(n: int) -> list[int]:
     """https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes"""
-    nums = [2]
-    nums.extend(range(3, n + 1, 2))
-    i, limit = 2, sqrt(n)
-    while (i := next(x for x in nums if x > i)) <= limit:
-        i2 = i ** 2
-        nums = [x for x in nums if x < i2 or x % i != 0]
-    return nums
+    primes, composites = [2], set()
+    for i in range(3, n + 1, 2):
+        if i in composites:
+            continue
+        primes.append(i)
+        composites.update({j for j in range(i, n + 1, i)})
+    return primes
 
 
 def square_nums(start: int, end: int) -> set[int]:
