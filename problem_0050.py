@@ -28,8 +28,7 @@ def get_args():
 
 def main():
     args = get_args()
-    primes = sieve(args.n - 1)
-    num_primes, primes_set = len(primes), set(primes)
+    primes_set = set(primes := sieve(args.n - 1))
     max_len, max_sum = 0, 0
     for i in primes:
         if max_len > 0 and i > args.n // max_len:

@@ -20,8 +20,7 @@ import utils
 
 
 def main():
-    nums_set = utils.pentagonal_nums(1, 10000)
-    nums = sorted(nums_set)
+    nums = sorted(nums_set := utils.pentagonal_nums(1, 10000))
     min_num = maxsize
     with concurrent.futures.ProcessPoolExecutor(max_workers=cpu_count()) as executor:
         futures = [executor.submit(find_min_num, chunk, nums, nums_set) for chunk in utils.list_to_chunks(nums)]

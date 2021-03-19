@@ -35,11 +35,10 @@ def main():
         futures = [executor.submit(generate_candidates, chunk, primes) for chunk in utils.list_to_chunks(primes)]
         for future in concurrent.futures.as_completed(futures):
             result = future.result()
-            for k in result.keys():
+            for k, v in result.items():
                 if k not in candidates:
                     candidates[k] = set()
-                for v in result[k]:
-                    candidates[k].add(v)
+                candidates[k].update(v)
     candidates = {k: v for k, v in candidates.items() if len(v) >= args.n - 1}
     print(min(min_sum_primes({k}, v, candidates, args.n) for k, v, in candidates.items()))
 

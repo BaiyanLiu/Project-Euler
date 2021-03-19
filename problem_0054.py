@@ -47,7 +47,7 @@ https://projecteuler.net/problem=54
 
 
 class Card:
-    def __init__(self, card):
+    def __init__(self, card: str):
         self.value = card[:2]
         self.suit = card[2]
 

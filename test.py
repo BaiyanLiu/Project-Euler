@@ -384,3 +384,9 @@ def test_0069():
 def test_0070():
     problem = 'problem_0070.py'
     assert getoutput(f'{problem}') == '8319823'
+
+
+def test_0071():
+    problem = 'problem_0071.py'
+    assert getoutput(f'{problem} 8') == '2'
+    assert getoutput(f'{problem} 1000000') == '428570'

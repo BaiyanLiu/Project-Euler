@@ -31,7 +31,7 @@ def get_args():
     parser = argparse.ArgumentParser(
         description='Find the value of n ≤ a for which n/φ(n) is a maximum.',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('a', type=int, help='Upper limit (inclusive')
+    parser.add_argument('a', type=int, help='Upper limit (inclusive)')
     return parser.parse_args()
 
 
@@ -42,8 +42,7 @@ def main():
 
 def totients(n: int) -> dict[int, int]:
     """https://en.wikipedia.org/wiki/Euler's_totient_function"""
-    primes = utils.sieve(n)
-    primes_set = set(primes)
+    primes_set = set(primes := utils.sieve(n))
     values = {}
     for i in range(2, n + 1):
         if i not in values:
