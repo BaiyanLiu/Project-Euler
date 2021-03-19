@@ -59,6 +59,11 @@ def is_prime(n: int, primes: list[int]) -> bool:
     return True
 
 
+def list_to_chunks(lst: list[int]) -> list[list[int]]:
+    chunk_size = len(lst) // 6 + 1
+    return [lst[chunk_size * i:chunk_size * (i + 1)] for i in range(6)]
+
+
 def max_path_triangle(row_start: int, next_row_size: int, nums: list[int], row: list[int]) -> list[int]:
     row = [max(row[i], row[i + 1]) + nums[row_start + i] for i in range(len(row) - 1)]
     if len(row) > 1:

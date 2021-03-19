@@ -10,6 +10,7 @@ https://projecteuler.net/problem=60
 
 
 import argparse
+import concurrent.futures
 from sys import maxsize
 
 import utils
@@ -29,14 +30,28 @@ def main():
     args = get_args()
     primes = utils.sieve(10000)
     candidates = {}
-    for i in primes:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=6) as executor:
+        futures = [executor.submit(generate_candidates, chunk, primes) for chunk in utils.list_to_chunks(primes)]
+        for future in concurrent.futures.as_completed(futures):
+            result = future.result()
+            for k in result.keys():
+                if k not in candidates:
+                    candidates[k] = set()
+                for v in result[k]:
+                    candidates[k].add(v)
+    candidates = {k: v for k, v in candidates.items() if len(v) >= args.n - 1}
+    print(min(min_sum_primes({k}, v, candidates, args.n) for k, v, in candidates.items()))
+
+
+def generate_candidates(primes_chunk: list[int], primes: list[int]) -> dict[str, set[str]]:
+    candidates = {}
+    for i in primes_chunk:
         i_str = str(i)
         for j_str in [str(p) for p in primes if p > i]:
             if utils.is_prime(int(i_str + j_str), primes) and utils.is_prime(int(j_str + i_str), primes):
                 add_candidate(i_str, j_str, candidates)
                 add_candidate(j_str, i_str, candidates)
-    candidates = {k: v for k, v in candidates.items() if len(v) >= args.n - 1}
-    print(min(min_sum_primes({k}, v, candidates, args.n) for k, v, in candidates.items()))
+    return candidates
 
 
 def add_candidate(k: str, v: str, candidates: dict[str, set[str]]) -> None:

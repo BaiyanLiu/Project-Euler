@@ -12,21 +12,32 @@ https://projecteuler.net/problem=44
 """
 
 
+import concurrent.futures
 from sys import maxsize
 
-from utils import pentagonal_nums
+import utils
 
 
 def main():
-    nums = pentagonal_nums(1, 10000)
+    nums_set = utils.pentagonal_nums(1, 10000)
+    nums = sorted(nums_set)
     min_num = maxsize
-    for i in (sorted_nums := sorted(nums)):
-        for j in sorted_nums:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=6) as executor:
+        futures = [executor.submit(find_min_num, chunk, nums, nums_set) for chunk in utils.list_to_chunks(nums)]
+        for future in concurrent.futures.as_completed(futures):
+            min_num = min(min_num, future.result())
+    print(min_num)
+
+
+def find_min_num(nums_chunk: list[int], nums: list[int], nums_set: set[int]) -> int:
+    min_num = maxsize
+    for i in nums_chunk:
+        for j in nums:
             if j > i:
                 break
-            if i + j in nums and i - j in nums:
+            if i + j in nums_set and i - j in nums_set:
                 min_num = min(min_num, i - j)
-    print(min_num)
+    return min_num
 
 
 if __name__ == '__main__':
