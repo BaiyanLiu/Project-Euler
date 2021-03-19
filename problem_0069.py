@@ -23,7 +23,7 @@ https://projecteuler.net/problem=69
 
 import argparse
 
-import utils
+from utils import totients
 
 
 def get_args():
@@ -38,29 +38,6 @@ def get_args():
 def main():
     args = get_args()
     print(max(values := {n: n / phi for n, phi in totients(args.a).items()}, key=values.get))
-
-
-def totients(n: int) -> dict[int, int]:
-    """https://en.wikipedia.org/wiki/Euler's_totient_function"""
-    primes_set = set(primes := utils.sieve(n))
-    values = {}
-    for i in range(2, n + 1):
-        if i not in values:
-            if i in primes_set:
-                values[i] = i - 1
-                for j in range(2, i):
-                    if (k := i * j) >= n:
-                        break
-                    values[k] = values[i] * values[j]
-            else:
-                phi = 1
-                for k, v in utils.num_factors(i, primes).items():
-                    phi *= values[k] * k ** (v - 2)
-                values[i] = phi
-            j = 1
-            while (k := i ** (j := j + 1)) < n:
-                values[k] = values[i] * i ** (j - 1)
-    return values
 
 
 if __name__ == '__main__':

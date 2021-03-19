@@ -115,5 +115,28 @@ def sum_series(n: int) -> int:
     return (n + 1) * n // 2
 
 
+def totients(n: int) -> dict[int, int]:
+    """https://en.wikipedia.org/wiki/Euler's_totient_function"""
+    primes_set = set(primes := sieve(n))
+    values = {}
+    for i in range(2, n + 1):
+        if i not in values:
+            if i in primes_set:
+                values[i] = i - 1
+                for j in range(2, i):
+                    if (k := i * j) >= n:
+                        break
+                    values[k] = values[i] * values[j]
+            else:
+                phi = 1
+                for k, v in num_factors(i, primes).items():
+                    phi *= values[k] * k ** (v - 2)
+                values[i] = phi
+            j = 1
+            while (k := i ** (j := j + 1)) < n:
+                values[k] = values[i] * i ** (j - 1)
+    return values
+
+
 def triangle_nums(start: int, end: int) -> set[int]:
     return {i * (i + 1) // 2 for i in range(start, end)}
