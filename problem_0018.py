@@ -35,7 +35,7 @@ https://projecteuler.net/problem=18
 """
 
 
-from utils import max_sum_triangle
+from utils import max_path_triangle
 
 
 def main():
@@ -58,8 +58,7 @@ def main():
     """
 
     nums = list(map(int, nums.split()))
-    sums = nums[len(nums) - 15:]
-    print(max_sum_triangle(len(nums) - 15 - 14, 13, nums, sums)[0])
+    print(max_path_triangle(-15 - 14, 13, nums, nums[-15:])[0])
 
 
 if __name__ == '__main__':

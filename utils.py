@@ -59,11 +59,11 @@ def is_prime(n: int, primes: list[int]) -> bool:
     return True
 
 
-def max_sum_triangle(index: int, next_row_size: int, nums: list[int], sums: list[int]) -> list[int]:
-    sums = [max(sums[i], sums[i + 1]) + nums[index + i] for i in range(len(sums) - 1)]
-    if len(sums) > 1:
-        sums = max_sum_triangle(index - next_row_size, next_row_size - 1, nums, sums)
-    return sums
+def max_path_triangle(row_start: int, next_row_size: int, nums: list[int], row: list[int]) -> list[int]:
+    row = [max(row[i], row[i + 1]) + nums[row_start + i] for i in range(len(row) - 1)]
+    if len(row) > 1:
+        row = max_path_triangle(row_start - next_row_size, next_row_size - 1, nums, row)
+    return row
 
 
 def num_factors(n: int, primes: list[int]) -> dict[int, int]:

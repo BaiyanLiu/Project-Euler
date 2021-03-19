@@ -12,12 +12,21 @@ https://projecteuler.net/problem=44
 """
 
 
-from itertools import product
+from sys import maxsize
+
+from utils import pentagonal_nums
 
 
 def main():
-    nums = {i * (3 * i - 1) // 2 for i in range(1, 10000)}
-    print(min(j - i for i, j in product(nums, nums) if j > i and i + j in nums and j - i in nums))
+    nums = pentagonal_nums(1, 10000)
+    min_num = maxsize
+    for i in (sorted_nums := sorted(nums)):
+        for j in sorted_nums:
+            if j > i:
+                break
+            if i + j in nums and i - j in nums:
+                min_num = min(min_num, i - j)
+    print(min_num)
 
 
 if __name__ == '__main__':

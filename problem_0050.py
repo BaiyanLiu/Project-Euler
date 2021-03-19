@@ -35,7 +35,9 @@ def main():
         if max_len > 0 and i > args.n // max_len:
             break
         curr_len, curr_sum = 1, i
-        for j in [p for p in primes if p > i]:
+        for j in primes:
+            if j <= i:
+                continue
             if (curr_sum := curr_sum + j) >= args.n:
                 break
             if (curr_len := curr_len + 1) > max_len and curr_sum in primes_set:

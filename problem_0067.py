@@ -20,13 +20,12 @@ https://projecteuler.net/problem=67
 """
 
 
-from utils import max_sum_triangle
+from utils import max_path_triangle
 
 
 def main():
     nums = list(map(int, open('input/p067_triangle.txt').read().split()))
-    sums = nums[len(nums) - 100:]
-    print(max_sum_triangle(len(nums) - 100 - 99, 98, nums, sums)[0])
+    print(max_path_triangle(-100 - 99, 98, nums, nums[-100:])[0])
 
 
 if __name__ == '__main__':

@@ -17,16 +17,18 @@ https://projecteuler.net/problem=23
 """
 
 
-from itertools import product
-
 import utils
 
 
 def main():
     nums = utils.sum_divisors(28123)
-    abundant_nums = [i for i in nums.keys() if i < nums[i]]
-    sums = {i + j for i, j in product(abundant_nums, abundant_nums) if j >= i and i + j <= 28123}
-    print(utils.sum_series(28123) - sum(sums))
+    abundant_sums = set()
+    for i in (abundants := sorted([i for i in nums.keys() if i < nums[i]])):
+        for j in abundants:
+            if (k := i + j) > 28123 or j > i:
+                break
+            abundant_sums.add(k)
+    print(utils.sum_series(28123) - sum(abundant_sums))
 
 
 if __name__ == '__main__':
