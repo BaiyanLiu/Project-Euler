@@ -11,6 +11,7 @@ https://projecteuler.net/problem=60
 
 import argparse
 import concurrent.futures
+from os import cpu_count
 from sys import maxsize
 
 import utils
@@ -30,7 +31,7 @@ def main():
     args = get_args()
     primes = utils.sieve(10000)
     candidates = {}
-    with concurrent.futures.ProcessPoolExecutor(max_workers=6) as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=cpu_count()) as executor:
         futures = [executor.submit(generate_candidates, chunk, primes) for chunk in utils.list_to_chunks(primes)]
         for future in concurrent.futures.as_completed(futures):
             result = future.result()

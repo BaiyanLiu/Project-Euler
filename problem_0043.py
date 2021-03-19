@@ -20,13 +20,14 @@ https://projecteuler.net/problem=43
 
 import concurrent.futures
 from itertools import product
+from os import cpu_count
 
 
 def main():
     rules = {(1, 2, 3): 2, (2, 3, 4): 3, (3, 4, 5): 5, (4, 5, 6): 7,
              (5, 6, 7): 11, (6, 7, 8): 13, (7, 8, 9): 17}
     nums_sum = 0
-    with concurrent.futures.ProcessPoolExecutor(max_workers=6) as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=cpu_count()) as executor:
         futures = [executor.submit(generate_and_sum, i, rules) for i in range(6)]
         for future in concurrent.futures.as_completed(futures):
             nums_sum += future.result()

@@ -13,6 +13,7 @@ https://projecteuler.net/problem=44
 
 
 import concurrent.futures
+from os import cpu_count
 from sys import maxsize
 
 import utils
@@ -22,7 +23,7 @@ def main():
     nums_set = utils.pentagonal_nums(1, 10000)
     nums = sorted(nums_set)
     min_num = maxsize
-    with concurrent.futures.ProcessPoolExecutor(max_workers=6) as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=cpu_count()) as executor:
         futures = [executor.submit(find_min_num, chunk, nums, nums_set) for chunk in utils.list_to_chunks(nums)]
         for future in concurrent.futures.as_completed(futures):
             min_num = min(min_num, future.result())

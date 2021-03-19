@@ -1,4 +1,5 @@
 from math import sqrt
+from os import cpu_count
 from typing import NamedTuple, Optional
 
 
@@ -60,8 +61,8 @@ def is_prime(n: int, primes: list[int]) -> bool:
 
 
 def list_to_chunks(lst: list[int]) -> list[list[int]]:
-    chunk_size = len(lst) // 6 + 1
-    return [lst[chunk_size * i:chunk_size * (i + 1)] for i in range(6)]
+    chunk_size = len(lst) // cpu_count() + 1
+    return [lst[chunk_size * i:chunk_size * (i + 1)] for i in range(cpu_count())]
 
 
 def max_path_triangle(row_start: int, next_row_size: int, nums: list[int], row: list[int]) -> list[int]:

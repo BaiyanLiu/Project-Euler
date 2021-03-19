@@ -10,6 +10,7 @@ https://projecteuler.net/problem=34
 
 
 import concurrent.futures
+from os import cpu_count
 
 import utils
 
@@ -22,7 +23,7 @@ def main():
         pass
     nums = list(range(10, max_num))
     nums_sum = 0
-    with concurrent.futures.ProcessPoolExecutor(max_workers=6) as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=cpu_count()) as executor:
         futures = [executor.submit(sum_nums, chunk, factorials) for chunk in utils.list_to_chunks(nums)]
         for future in concurrent.futures.as_completed(futures):
             nums_sum += future.result()

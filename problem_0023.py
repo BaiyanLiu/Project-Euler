@@ -18,6 +18,7 @@ https://projecteuler.net/problem=23
 
 
 import concurrent.futures
+from os import cpu_count
 
 import utils
 
@@ -26,7 +27,7 @@ def main():
     nums = utils.sum_divisors(28123)
     abundants = sorted([i for i in nums.keys() if i < nums[i]])
     abundant_sums = set()
-    with concurrent.futures.ProcessPoolExecutor(max_workers=6) as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=cpu_count()) as executor:
         futures = [executor.submit(sum_abundants, chunk, abundants) for chunk in utils.list_to_chunks(abundants)]
         for future in concurrent.futures.as_completed(futures):
             abundant_sums.update(future.result())
