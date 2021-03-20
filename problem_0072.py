@@ -10,7 +10,7 @@ It can be seen that there are 21 elements in this set.
 
 How many elements would be contained in the set of reduced proper fractions for d ≤ 1,000,000?
 
-https://projecteuler.net/problem=71
+https://projecteuler.net/problem=72
 """
 
 
