@@ -402,3 +402,8 @@ def test_0073():
     problem = 'problem_0073.py'
     assert getoutput(f'{problem} 8') == '3'
     assert getoutput(f'{problem} 12000') == '7295372'
+
+
+def test_0074():
+    problem = 'problem_0074.py'
+    assert getoutput(f'{problem}') == '402'
