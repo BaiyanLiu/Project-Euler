@@ -18,7 +18,7 @@ https://projecteuler.net/problem=6
 
 import argparse
 
-from utils import sum_series
+import utils
 
 
 def get_args():
@@ -33,8 +33,8 @@ def get_args():
 
 def main():
     args = get_args()
-    square_of_sum = sum_series(args.n) ** 2
-    sum_of_squares = sum([i ** 2 for i in range(1, args.n + 1)])
+    square_of_sum = utils.sum_series(args.n) ** 2
+    sum_of_squares = sum(utils.square_nums(1, args.n + 1))
     print(square_of_sum - sum_of_squares)
 
 

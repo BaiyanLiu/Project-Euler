@@ -14,6 +14,7 @@ https://projecteuler.net/problem=31
 
 
 import argparse
+from functools import lru_cache
 
 
 def get_args():
@@ -27,10 +28,11 @@ def get_args():
 
 def main():
     args = get_args()
-    print(num_combos(args.n * 100, values := [200, 100, 50, 20, 10, 5, 2, 1], values[0]))
+    print(num_combos(args.n * 100, values := (200, 100, 50, 20, 10, 5, 2, 1), values[0]))
 
 
-def num_combos(n: int, values: list[int], prev_value: int) -> int:
+@lru_cache(maxsize=None)
+def num_combos(n: int, values: tuple, prev_value: int) -> int:
     if n == 0:
         return 1
     else:

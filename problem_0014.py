@@ -19,6 +19,7 @@ https://projecteuler.net/problem=14
 
 
 import argparse
+from functools import lru_cache
 
 
 def get_args():
@@ -32,16 +33,14 @@ def get_args():
 
 def main():
     args = get_args()
-    nums = {1: 1}
-    for i in range(2, args.n):
-        collatz(i, nums)
-    print(max(nums, key=nums.get))
+    print(max((nums := {i: collatz(i) for i in range(2, args.n)}), key=nums.get))
 
 
-def collatz(n: int, nums: dict[int, int]) -> int:
-    if n not in nums:
-        nums[n] = collatz(n // 2 if n % 2 == 0 else n * 3 + 1, nums) + 1
-    return nums[n]
+@lru_cache(maxsize=None)
+def collatz(n: int) -> int:
+    if n == 1:
+        return 1
+    return collatz(n // 2 if n % 2 == 0 else n * 3 + 1) + 1
 
 
 if __name__ == '__main__':

@@ -48,8 +48,7 @@ def main():
             elif first_digit != digit:
                 continue
             if cycle > max_cycle:
-                max_cycle = cycle
-                max_num = num
+                max_cycle, max_num = cycle, num
             break
     print(max_num)
 
