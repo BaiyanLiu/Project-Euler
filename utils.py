@@ -1,3 +1,5 @@
+from functools import lru_cache
+from itertools import count
 from math import sqrt
 from os import cpu_count
 from typing import NamedTuple, Optional
@@ -84,8 +86,30 @@ def num_factors(n: int, primes: list[int]) -> dict[int, int]:
     return factors
 
 
+@lru_cache(maxsize=None)
+def num_partitions(n: int) -> int:
+    """https://en.wikipedia.org/wiki/Partition_(number_theory)"""
+    if n == 0:
+        return 1
+    partitions = 0
+    for i in count(1):
+        if (num := pentagonal_num(i)) > n:
+            break
+        partitions += num_partitions(n - num) * (sign := -1 if i % 2 == 0 else 1)
+        if (num := pentagonal_num(-i)) > n:
+            break
+        partitions += num_partitions(n - num) * sign
+    # Small optimization for problem 78
+    return partitions % 1000000000
+
+
+@lru_cache(maxsize=None)
+def pentagonal_num(i: int) -> int:
+    return i * (3 * i - 1) // 2
+
+
 def pentagonal_nums(start: int, end: int) -> set[int]:
-    return {i * (3 * i - 1) // 2 for i in range(start, end)}
+    return set(map(pentagonal_num, range(start, end)))
 
 
 def sieve(n: int) -> list[int]:
