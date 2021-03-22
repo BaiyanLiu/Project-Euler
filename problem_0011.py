@@ -32,7 +32,7 @@ https://projecteuler.net/problem=11
 
 
 from functools import reduce
-from math import sqrt
+from math import isqrt
 from operator import mul
 
 
@@ -61,7 +61,7 @@ def main():
     """
 
     nums = list(map(int, nums.split()))
-    width = int(sqrt(len(nums)))
+    width = isqrt(len(nums))
     max_prod = 1
     for i in range(len(nums)):
         has_down = i < len(nums) - width * 3

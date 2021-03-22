@@ -37,7 +37,7 @@ https://projecteuler.net/problem=64
 
 
 import argparse
-from math import sqrt
+from math import isqrt
 
 import utils
 from utils import ContinuedFractionParams as Params
@@ -54,7 +54,7 @@ def get_args():
 
 def main():
     args = get_args()
-    print(sum(1 for i in range(2, args.n + 1) if len_cycle(i, a0 := int(sqrt(i)), [Params(0, 1, a0)]) % 2 != 0))
+    print(sum(1 for i in range(2, args.n + 1) if len_cycle(i, a0 := isqrt(i), [Params(0, 1, a0)]) % 2 != 0))
 
 
 def len_cycle(i: int, a0: int, params: list[Params]) -> int:
