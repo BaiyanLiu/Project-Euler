@@ -29,28 +29,32 @@ def main():
     path, next_node = matrix[0], 0
     while next_node := find_next_node(next_node, 80)[0]:
         path += matrix[next_node]
-        if next_node == len(matrix) - 1:
+        if at_end(next_node):
             print(path)
+            break
 
 
-@lru_cache(maxsize=None)
 def find_next_node(curr: int, depth: int) -> tuple[int, int]:
     min_node, min_value = 0, maxsize
-    if curr % width != width - 1:
-        if (value := look_ahead(curr + 1, depth)) < min_value:
-            min_node, min_value = curr + 1, value
-    if curr + width < len(matrix):
-        if (value := look_ahead(curr + width, depth)) < min_value:
-            min_node, min_value = curr + width, value
+    if (right := curr + 1) % width != 0:
+        if (value := look_ahead(right, depth)) < min_value:
+            min_node, min_value = right, value
+    if (down := curr + width) < len(matrix):
+        if (value := look_ahead(down, depth)) < min_value:
+            min_node, min_value = down, value
     return min_node, min_value
 
 
 @lru_cache(maxsize=None)
 def look_ahead(curr: int, depth: int) -> int:
     value = matrix[curr]
-    if depth > 0 and curr != len(matrix) - 1:
+    if depth > 0 and not at_end(curr):
         return value + find_next_node(curr, depth - 1)[1]
     return value
+
+
+def at_end(node: int) -> bool:
+    return node == len(matrix) - 1
 
 
 if __name__ == '__main__':
