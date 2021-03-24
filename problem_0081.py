@@ -49,7 +49,7 @@ def find_next_node(curr: int, depth: int) -> tuple[int, int]:
 def look_ahead(curr: int, depth: int) -> int:
     value = matrix[curr]
     if depth > 0 and not at_end(curr):
-        return value + find_next_node(curr, depth - 1)[1]
+        value += find_next_node(curr, depth - 1)[1]
     return value
 
 

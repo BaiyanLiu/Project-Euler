@@ -17,53 +17,34 @@ https://projecteuler.net/problem=82
 """
 
 
-from functools import lru_cache
 from math import isqrt
 from re import split
 from sys import maxsize
 
-
-matrix = list(map(int, split('[\\s,]', open('input/p082_matrix.txt').read().rstrip())))
-width = isqrt(len(matrix))
+from utils import matrix_neighbors
 
 
 def main():
-    print(min(map(find_min_path, range(0, len(matrix), width))))
+    matrix = list(map(int, split('[\\s,]', open('input/p082_matrix.txt').read().rstrip())))
+    width = isqrt(len(matrix))
+    print(min(v for k, v in dijkstra(matrix, width).items() if k % width == width - 1))
 
 
-def find_min_path(curr: int) -> int:
-    path, curr = matrix[curr] + matrix[curr + 1], curr + 1
-    prev, next_node = 0, 0
-    while (next_node := find_next_node(curr, prev, 110)[0]) and (prev := curr) and (curr := next_node):
-        path += matrix[next_node]
-        if at_end(next_node):
-            return path
+def dijkstra(matrix: list[int], width: int) -> dict[int, int]:
+    """https://en.wikipedia.org/wiki/Dijkstra's_algorithm"""
+    dist = dict.fromkeys(range(len(matrix)), maxsize)
+    for i in range(0, len(matrix), width):
+        dist[i] = matrix[i]
+    queue = dist.copy()
 
-
-def find_next_node(curr: int, prev, depth: int) -> tuple[int, int]:
-    min_node, min_value = 0, maxsize
-    if (right := curr + 1) % width != 0:
-        if (value := look_ahead(right, curr, depth)) < min_value:
-            min_node, min_value = right, value
-    if (up := curr - width) > 0 and up != prev:
-        if (value := look_ahead(up, curr, depth)) < min_value:
-            min_node, min_value = up, value
-    if (down := curr + width) < len(matrix) and down != prev:
-        if (value := look_ahead(down, curr, depth)) < min_value:
-            min_node, min_value = down, value
-    return min_node, min_value
-
-
-@lru_cache(maxsize=None)
-def look_ahead(curr: int, prev: int, depth: int) -> int:
-    value = matrix[curr]
-    if depth > 0 and not at_end(curr):
-        return value + find_next_node(curr, prev, depth - 1)[1]
-    return value
-
-
-def at_end(node: int) -> bool:
-    return node % width == width - 1
+    while len(queue) > 0:
+        queue.pop(curr := min(queue, key=queue.get))
+        for neighbor in matrix_neighbors(curr, matrix, width):
+            if neighbor not in queue:
+                continue
+            if (alt_dist := dist[curr] + matrix[neighbor]) < dist[neighbor]:
+                queue[neighbor] = dist[neighbor] = alt_dist
+    return dist
 
 
 if __name__ == '__main__':

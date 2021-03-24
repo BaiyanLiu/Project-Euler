@@ -67,6 +67,19 @@ def list_to_chunks(lst: list[int]) -> list[list[int]]:
     return [lst[chunk_size * i:chunk_size * (i + 1)] for i in range(chunks)]
 
 
+def matrix_neighbors(curr: int, matrix: list[int], width: int, has_left: bool = False) -> list[int]:
+    neighbors = []
+    if (right := curr + 1) % width != 0:
+        neighbors.append(right)
+    if (down := curr + width) < len(matrix):
+        neighbors.append(down)
+    if (up := curr - width) > 0:
+        neighbors.append(up)
+    if (left := curr - 1) % width != width - 1 and has_left and left > 0:
+        neighbors.append(left)
+    return neighbors
+
+
 def max_path_triangle(row_start: int, next_row_size: int, nums: list[int], row: list[int]) -> list[int]:
     row = [max(row[i], row[i + 1]) + nums[row_start + i] for i in range(len(row) - 1)]
     if len(row) > 1:
