@@ -55,6 +55,14 @@ import argparse
 from itertools import product
 
 
+CC = {2, 17, 33}
+CH = {7, 22, 36}
+GO, G2J, JAIL = 0, 30, 10
+C1, E3, H2 = 11, 24, 39
+R = [5, 15, 25, 35]
+U = [12, 28]
+
+
 def get_args():
     # noinspection PyTypeChecker
     parser = argparse.ArgumentParser(
@@ -62,14 +70,6 @@ def get_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('n', type=int, help='Number of sides on the dice')
     return parser.parse_args()
-
-
-CC = {2, 17, 33}
-CH = {7, 22, 36}
-GO, G2J, JAIL = 0, 30, 10
-C1, E3, H2 = 11, 24, 39
-R = [5, 15, 25, 35]
-U = [12, 28]
 
 
 def main():
