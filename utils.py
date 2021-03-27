@@ -2,7 +2,7 @@ from functools import lru_cache
 from itertools import count
 from math import sqrt
 from os import cpu_count
-from typing import NamedTuple, Optional
+from typing import Iterator, NamedTuple, Optional
 
 
 class ContinuedFractionParams(NamedTuple):
@@ -123,6 +123,21 @@ def pentagonal_num(i: int) -> int:
 
 def pentagonal_nums(start: int, end: int) -> set[int]:
     return set(map(pentagonal_num, range(start, end)))
+
+
+def pythagorean_triples(limit: int) -> Iterator[tuple[int, int, int]]:
+    """https://en.wikipedia.org/wiki/Pythagorean_triple"""
+    for m in count(2):
+        if (m2 := m ** 2) * 2 + m * 2 > limit:
+            break
+        for n in range(1, m):
+            if m2 * 2 + m * n * 2 > limit:
+                break
+            a, b, c = sorted([m2 - (n2 := n ** 2), m * n * 2, m2 + n2])
+            p = a + b + c
+            k = 0
+            while (p * (k := k + 1)) <= limit:
+                yield a * k, b * k, c * k
 
 
 def sieve(n: int) -> list[int]:

@@ -23,7 +23,8 @@ https://projecteuler.net/problem=75
 
 
 import argparse
-from itertools import count
+
+from utils import pythagorean_triples
 
 
 def get_args():
@@ -39,21 +40,12 @@ def get_args():
 def main():
     """https://en.wikipedia.org/wiki/Pythagorean_triple"""
     args = get_args()
-    triangles = {}
-    for m in count(2):
-        if (m2 := m ** 2) * 2 + m * 2 > args.n:
-            break
-        for n in range(1, m):
-            if m2 * 2 + m * n * 2 > args.n:
-                break
-            a, b, c = sorted([m2 - (n2 := n ** 2), m * n * 2, m2 + n2])
-            p = a + b + c
-            k = 0
-            while (pk := p * (k := k + 1)) <= args.n:
-                if pk not in triangles:
-                    triangles[pk] = set()
-                triangles[pk].add(a * k)
-    print(sum(1 for i in triangles.values() if len(i) == 1))
+    triples = {}
+    for a, b, c in pythagorean_triples(args.n):
+        if (p := a + b + c) not in triples:
+            triples[p] = set()
+        triples[p].add(a)
+    print(sum(1 for i in triples.values() if len(i) == 1))
 
 
 if __name__ == '__main__':
