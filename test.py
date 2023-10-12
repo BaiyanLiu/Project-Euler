@@ -2,490 +2,406 @@ from subprocess import getoutput
 
 
 def test_0001():
-    problem = 'problem_0001.py'
-    assert getoutput(f'{problem} 3 5 10') == '23'
-    assert getoutput(f'{problem} 3 5 1000') == '233168'
+    assert_problem(1, '23', 3, 5, 10)
+    assert_problem(1, '233168', 3, 5, 1000)
 
 
 def test_0002():
-    problem = 'problem_0002.py'
-    assert getoutput(f'{problem} 100') == '44'
-    assert getoutput(f'{problem} 4000000') == '4613732'
+    assert_problem(2, '44', 100)
+    assert_problem(2, '4613732', 4000000)
 
 
 def test_0003():
-    problem = 'problem_0003.py'
-    assert getoutput(f'{problem} 13195') == '29'
-    assert getoutput(f'{problem} 600851475143') == '6857'
+    assert_problem(3, '29', 13195)
+    assert_problem(3, '6857', 600851475143)
 
 
 def test_0004():
-    problem = 'problem_0004.py'
-    assert getoutput(f'{problem} 2') == '9009'
-    assert getoutput(f'{problem} 3') == '906609'
+    assert_problem(4, '9009', 2)
+    assert_problem(4, '906609', 3)
 
 
 def test_0005():
-    problem = 'problem_0005.py'
-    assert getoutput(f'{problem} 10') == '2520'
-    assert getoutput(f'{problem} 20') == '232792560'
+    assert_problem(5, '2520', 10)
+    assert_problem(5, '232792560', 20)
 
 
 def test_0006():
-    problem = 'problem_0006.py'
-    assert getoutput(f'{problem} 10') == '2640'
-    assert getoutput(f'{problem} 100') == '25164150'
+    assert_problem(6, '2640', 10)
+    assert_problem(6, '25164150', 100)
 
 
 def test_0007():
-    problem = 'problem_0007.py'
-    assert getoutput(f'{problem} 6') == '13'
-    assert getoutput(f'{problem} 10001') == '104743'
+    assert_problem(7, '13', 6)
+    assert_problem(7, '104743', 10001)
 
 
 def test_0008():
-    problem = 'problem_0008.py'
-    assert getoutput(f'{problem} 4') == '5832'
-    assert getoutput(f'{problem} 13') == '23514624000'
+    assert_problem(8, '5832', 4)
+    assert_problem(8, '23514624000', 13)
 
 
 def test_0009():
-    problem = 'problem_0009.py'
-    assert getoutput(f'{problem} 12') == '60'
-    assert getoutput(f'{problem} 1000') == '31875000'
+    assert_problem(9, '60', 12)
+    assert_problem(9, '31875000', 1000)
 
 
 def test_0010():
-    problem = 'problem_0010.py'
-    assert getoutput(f'{problem} 10') == '17'
-    assert getoutput(f'{problem} 2000000') == '142913828922'
+    assert_problem(10, '17', 10)
+    assert_problem(10, '142913828922', 2000000)
 
 
 def test_0011():
-    problem = 'problem_0011.py'
-    assert getoutput(f'{problem}') == '70600674'
+    assert_problem(11, '70600674')
 
 
 def test_0012():
-    problem = 'problem_0012.py'
-    assert getoutput(f'{problem} 5') == '28'
-    assert getoutput(f'{problem} 500') == '76576500'
+    assert_problem(12, '28', 5)
+    assert_problem(12, '76576500', 500)
 
 
 def test_0013():
-    problem = 'problem_0013.py'
-    assert getoutput(f'{problem}') == '5537376230'
+    assert_problem(13, '5537376230')
 
 
 def test_0014():
-    problem = 'problem_0014.py'
-    assert getoutput(f'{problem} 1000000') == '837799'
+    assert_problem(14, '837799', 1000000)
 
 
 def test_0015():
-    problem = 'problem_0015.py'
-    assert getoutput(f'{problem} 2') == '6'
-    assert getoutput(f'{problem} 20') == '137846528820'
+    assert_problem(15, '6', 2)
+    assert_problem(15, '137846528820', 20)
 
 
 def test_0016():
-    problem = 'problem_0016.py'
-    assert getoutput(f'{problem} 32768') == '26'
-    assert getoutput(f'{problem} {2 ** 1000}') == '1366'
+    assert_problem(16, '26', 32768)
+    assert_problem(16, '1366', 2 ** 1000)
 
 
 def test_0017():
-    problem = 'problem_0017.py'
-    assert getoutput(f'{problem} 5') == '19'
-    assert getoutput(f'{problem} 1000') == '21124'
+    assert_problem(17, '19', 5)
+    assert_problem(17, '21124', 1000)
 
 
 def test_0018():
-    problem = 'problem_0018.py'
-    assert getoutput(f'{problem}') == '1074'
+    assert_problem(18, '1074')
 
 
 def test_0019():
-    problem = 'problem_0019.py'
-    assert getoutput(f'{problem} 2000') == '171'
+    assert_problem(19, '171', 2000)
 
 
 def test_0020():
-    problem = 'problem_0020.py'
-    assert getoutput(f'{problem} 10') == '27'
-    assert getoutput(f'{problem} 100') == '648'
+    assert_problem(20, '27', 10)
+    assert_problem(20, '648', 100)
 
 
 def test_0021():
-    problem = 'problem_0021.py'
-    assert getoutput(f'{problem} 10000') == '31626'
+    assert_problem(21, '31626', 10000)
 
 
 def test_0022():
-    problem = 'problem_0022.py'
-    assert getoutput(f'{problem}') == '871198282'
+    assert_problem(22, '871198282')
 
 
 def test_0023():
-    problem = 'problem_0023.py'
-    assert getoutput(f'{problem}') == '4179871'
+    assert_problem(23, '4179871')
 
 
 def test_0024():
-    problem = 'problem_0024.py'
-    assert getoutput(f'{problem} 1 2') == '012'
-    assert getoutput(f'{problem} 6 2') == '210'
-    assert getoutput(f'{problem} 1000000 9') == '2783915460'
+    assert_problem(24, '012', 1, 2)
+    assert_problem(24, '210', 6, 2)
+    assert_problem(24, '2783915460', 1000000, 9)
 
 
 def test_0025():
-    problem = 'problem_0025.py'
-    assert getoutput(f'{problem} 3') == '12'
-    assert getoutput(f'{problem} 1000') == '4782'
+    assert_problem(25, '12', 3)
+    assert_problem(25, '4782', 1000)
 
 
 def test_0026():
-    problem = 'problem_0026.py'
-    assert getoutput(f'{problem} 11') == '7'
-    assert getoutput(f'{problem} 1000') == '983'
+    assert_problem(26, '7', 11)
+    assert_problem(26, '983', 1000)
 
 
 def test_0027():
-    problem = 'problem_0027.py'
-    assert getoutput(f'{problem}') == '-59231'
+    assert_problem(27, '-59231')
 
 
 def test_0028():
-    problem = 'problem_0028.py'
-    assert getoutput(f'{problem} 5') == '101'
-    assert getoutput(f'{problem} 1001') == '669171001'
+    assert_problem(28, '101', 5)
+    assert_problem(28, '669171001', 1001)
 
 
 def test_0029():
-    problem = 'problem_0029.py'
-    assert getoutput(f'{problem} 5') == '15'
-    assert getoutput(f'{problem} 100') == '9183'
+    assert_problem(29, '15', 5)
+    assert_problem(29, '9183', 100)
 
 
 def test_0030():
-    problem = 'problem_0030.py'
-    assert getoutput(f'{problem} 4') == '19316'
-    assert getoutput(f'{problem} 5') == '443839'
+    assert_problem(30, '19316', 4)
+    assert_problem(30, '443839', 5)
 
 
 def test_0031():
-    problem = 'problem_0031.py'
-    assert getoutput(f'{problem} 2') == '73682'
+    assert_problem(31, '73682', 2)
 
 
 def test_0032():
-    problem = 'problem_0032.py'
-    assert getoutput(f'{problem}') == '45228'
+    assert_problem(32, '45228')
 
 
 def test_0033():
-    problem = 'problem_0033.py'
-    assert getoutput(f'{problem}') == '100'
+    assert_problem(33, '100')
 
 
 def test_0034():
-    problem = 'problem_0034.py'
-    assert getoutput(f'{problem}') == '40730'
+    assert_problem(34, '40730')
 
 
 def test_0035():
-    problem = 'problem_0035.py'
-    assert getoutput(f'{problem} 100') == '13'
-    assert getoutput(f'{problem} 1000000') == '55'
+    assert_problem(35, '13', 100)
+    assert_problem(35, '55', 1000000)
 
 
 def test_0036():
-    problem = 'problem_0036.py'
-    assert getoutput(f'{problem}') == '872187'
+    assert_problem(36, '872187')
 
 
 def test_0037():
-    problem = 'problem_0037.py'
-    assert getoutput(f'{problem}') == '748317'
+    assert_problem(37, '748317')
 
 
 def test_0038():
-    problem = 'problem_0038.py'
-    assert getoutput(f'{problem}') == '932718654'
+    assert_problem(38, '932718654')
 
 
 def test_0039():
-    problem = 'problem_0039.py'
-    assert getoutput(f'{problem}') == '840'
+    assert_problem(39, '840')
 
 
 def test_0040():
-    problem = 'problem_0040.py'
-    assert getoutput(f'{problem}') == '210'
+    assert_problem(40, '210')
 
 
 def test_0041():
-    problem = 'problem_0041.py'
-    assert getoutput(f'{problem}') == '7652413'
+    assert_problem(41, '7652413')
 
 
 def test_0042():
-    problem = 'problem_0042.py'
-    assert getoutput(f'{problem}') == '162'
+    assert_problem(42, '162')
 
 
 def test_0043():
-    problem = 'problem_0043.py'
-    assert getoutput(f'{problem}') == '16695334890'
+    assert_problem(43, '16695334890')
 
 
 def test_0044():
-    problem = 'problem_0044.py'
-    assert getoutput(f'{problem}') == '5482660'
+    assert_problem(44, '5482660')
 
 
 def test_0045():
-    problem = 'problem_0045.py'
-    assert getoutput(f'{problem}') == '1533776805'
+    assert_problem(45, '1533776805')
 
 
 def test_0046():
-    problem = 'problem_0046.py'
-    assert getoutput(f'{problem}') == '5777'
+    assert_problem(46, '5777')
 
 
 def test_0047():
-    problem = 'problem_0047.py'
-    assert getoutput(f'{problem}') == '134043'
+    assert_problem(47, '134043')
 
 
 def test_0048():
-    problem = 'problem_0048.py'
-    assert getoutput(f'{problem} 10') == '0405071317'
-    assert getoutput(f'{problem} 1000') == '9110846700'
+    assert_problem(48, '0405071317', 10)
+    assert_problem(48, '9110846700', 1000)
 
 
 def test_0049():
-    problem = 'problem_0049.py'
-    assert getoutput(f'{problem}') == '296962999629'
+    assert_problem(49, '296962999629')
 
 
 def test_0050():
-    problem = 'problem_0050.py'
-    assert getoutput(f'{problem} 100') == '41'
-    assert getoutput(f'{problem} 1000') == '953'
-    assert getoutput(f'{problem} 1000000') == '997651'
+    assert_problem(50, '41', 100)
+    assert_problem(50, '953', 1000)
+    assert_problem(50, '997651', 1000000)
 
 
 def test_0051():
-    problem = 'problem_0051.py'
-    assert getoutput(f'{problem} 6') == '13'
-    assert getoutput(f'{problem} 7') == '56003'
-    assert getoutput(f'{problem} 8') == '121313'
+    assert_problem(51, '13', 6)
+    assert_problem(51, '56003', 7)
+    assert_problem(51, '121313', 8)
 
 
 def test_0052():
-    problem = 'problem_0052.py'
-    assert getoutput(f'{problem}') == '142857'
+    assert_problem(52, '142857')
 
 
 def test_0053():
-    problem = 'problem_0053.py'
-    assert getoutput(f'{problem}') == '4075'
+    assert_problem(53, '4075')
 
 
 def test_0054():
-    problem = 'problem_0054.py'
-    assert getoutput(f'{problem}') == '376'
+    assert_problem(54, '376')
 
 
 def test_0055():
-    problem = 'problem_0055.py'
-    assert getoutput(f'{problem}') == '249'
+    assert_problem(55, '249')
 
 
 def test_0056():
-    problem = 'problem_0056.py'
-    assert getoutput(f'{problem}') == '972'
+    assert_problem(56, '972')
 
 
 def test_0057():
-    problem = 'problem_0057.py'
-    assert getoutput(f'{problem}') == '153'
+    assert_problem(57, '153')
 
 
 def test_0058():
-    problem = 'problem_0058.py'
-    assert getoutput(f'{problem}') == '26241'
+    assert_problem(58, '26241')
 
 
 def test_0059():
-    problem = 'problem_0059.py'
-    assert getoutput(f'{problem}') == '129448'
+    assert_problem(59, '129448')
 
 
 def test_0060():
-    problem = 'problem_0060.py'
-    assert getoutput(f'{problem} 4') == '792'
-    assert getoutput(f'{problem} 5') == '26033'
+    assert_problem(60, '792', 4)
+    assert_problem(60, '26033', 5)
 
 
 def test_0061():
-    problem = 'problem_0061.py'
-    assert getoutput(f'{problem}') == '28684'
+    assert_problem(61, '28684')
 
 
 def test_0062():
-    problem = 'problem_0062.py'
-    assert getoutput(f'{problem} 3') == '41063625'
-    assert getoutput(f'{problem} 5') == '127035954683'
+    assert_problem(62, '41063625', 3)
+    assert_problem(62, '127035954683', 5)
 
 
 def test_0063():
-    problem = 'problem_0063.py'
-    assert getoutput(f'{problem}') == '49'
+    assert_problem(63, '49')
 
 
 def test_0064():
-    problem = 'problem_0064.py'
-    assert getoutput(f'{problem} 13') == '4'
-    assert getoutput(f'{problem} 10000') == '1322'
+    assert_problem(64, '4', 13)
+    assert_problem(64, '1322', 10000)
 
 
 def test_0065():
-    problem = 'problem_0065.py'
-    assert getoutput(f'{problem} 10') == '17'
-    assert getoutput(f'{problem} 100') == '272'
+    assert_problem(65, '17', 10)
+    assert_problem(65, '272', 100)
 
 
 def test_0066():
-    problem = 'problem_0066.py'
-    assert getoutput(f'{problem} 7') == '5'
-    assert getoutput(f'{problem} 1000') == '661'
+    assert_problem(66, '5', 7)
+    assert_problem(66, '661', 1000)
 
 
 def test_0067():
-    problem = 'problem_0067.py'
-    assert getoutput(f'{problem}') == '7273'
+    assert_problem(67, '7273')
 
 
 def test_0068():
-    problem = 'problem_0068.py'
-    assert getoutput(f'{problem} 9 3') == '432621513'
-    assert getoutput(f'{problem} 16 5') == '6531031914842725'
+    assert_problem(68, '432621513', 9, 3)
+    assert_problem(68, '6531031914842725', 16, 5)
 
 
 def test_0069():
-    problem = 'problem_0069.py'
-    assert getoutput(f'{problem} 10') == '6'
-    assert getoutput(f'{problem} 1000000') == '510510'
+    assert_problem(69, '6', 10)
+    assert_problem(69, '510510', 1000000)
 
 
 def test_0070():
-    problem = 'problem_0070.py'
-    assert getoutput(f'{problem}') == '8319823'
+    assert_problem(70, '8319823')
 
 
 def test_0071():
-    problem = 'problem_0071.py'
-    assert getoutput(f'{problem} 8') == '2'
-    assert getoutput(f'{problem} 1000000') == '428570'
+    assert_problem(71, '2', 8)
+    assert_problem(71, '428570', 1000000)
 
 
 def test_0072():
-    problem = 'problem_0072.py'
-    assert getoutput(f'{problem} 8') == '21'
-    assert getoutput(f'{problem} 1000000') == '303963552391'
+    assert_problem(72, '21', 8)
+    assert_problem(72, '303963552391', 1000000)
 
 
 def test_0073():
-    problem = 'problem_0073.py'
-    assert getoutput(f'{problem} 8') == '3'
-    assert getoutput(f'{problem} 12000') == '7295372'
+    assert_problem(73, '3', 8)
+    assert_problem(73, '7295372', 12000)
 
 
 def test_0074():
-    problem = 'problem_0074.py'
-    assert getoutput(f'{problem}') == '402'
+    assert_problem(74, '402')
 
 
 def test_0075():
-    problem = 'problem_0075.py'
-    assert getoutput(f'{problem} 48') == '6'
-    assert getoutput(f'{problem} 1500000') == '161667'
+    assert_problem(75, '6', 48)
+    assert_problem(75, '161667', 1500000)
 
 
 def test_0076():
-    problem = 'problem_0076.py'
-    assert getoutput(f'{problem} 5') == '6'
-    assert getoutput(f'{problem} 100') == '190569291'
+    assert_problem(76, '6', 5)
+    assert_problem(76, '190569291', 100)
 
 
 def test_0077():
-    problem = 'problem_0077.py'
-    assert getoutput(f'{problem}') == '71'
+    assert_problem(77, '71')
 
 
 def test_0078():
-    problem = 'problem_0078.py'
-    assert getoutput(f'{problem}') == '55374'
+    assert_problem(78, '55374')
 
 
 def test_0079():
-    problem = 'problem_0079.py'
-    assert getoutput(f'{problem}') == '73162890'
+    assert_problem(79, '73162890')
 
 
 def test_0080():
-    problem = 'problem_0080.py'
-    assert getoutput(f'{problem}') == '40886'
+    assert_problem(80, '40886')
 
 
 def test_0081():
-    problem = 'problem_0081.py'
-    assert getoutput(f'{problem}') == '427337'
+    assert_problem(81, '427337')
 
 
 def test_0082():
-    problem = 'problem_0082.py'
-    assert getoutput(f'{problem}') == '260324'
+    assert_problem(82, '260324')
 
 
 def test_0083():
-    problem = 'problem_0083.py'
-    assert getoutput(f'{problem}') == '425185'
+    assert_problem(83, '425185')
 
 
 def test_0084():
-    problem = 'problem_0084.py'
-    assert getoutput(f'{problem} 6') == '102400'
-    assert getoutput(f'{problem} 4') == '101524'
+    assert_problem(84, '102400', 6)
+    assert_problem(84, '101524', 4)
 
 
 def test_0085():
-    problem = 'problem_0085.py'
-    assert getoutput(f'{problem}') == '2772'
+    assert_problem(85, '2772')
 
 
 def test_0086():
-    problem = 'problem_0086.py'
-    assert getoutput(f'{problem} 2000') == '100'
-    assert getoutput(f'{problem} 1000000') == '1818'
+    assert_problem(86, '100', 2000)
+    assert_problem(86, '1818', 1000000)
 
 
 def test_0087():
-    problem = 'problem_0087.py'
-    assert getoutput(f'{problem} 50') == '4'
-    assert getoutput(f'{problem} 50000000') == '1097343'
+    assert_problem(87, '4', 50)
+    assert_problem(87, '1097343', 50000000)
 
 
 def test_0088():
-    problem = 'problem_0088.py'
-    assert getoutput(f'{problem} 6') == '30'
-    assert getoutput(f'{problem} 12') == '61'
-    assert getoutput(f'{problem} 12000') == '7587457'
+    assert_problem(88, '30', 6)
+    assert_problem(88, '61', 12)
+    assert_problem(88, '7587457', 12000)
 
 
 def test_0089():
-    problem = 'problem_0089.py'
-    assert getoutput(f'{problem}') == '743'
+    assert_problem(89, '743')
+
+
+def assert_problem(problem: int, expected: str, *args):
+    args_str = ' '.join(str(arg) for arg in args)
+    assert getoutput(f'python problem_{problem:04}.py {args_str}') == expected
