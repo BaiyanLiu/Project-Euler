@@ -402,6 +402,10 @@ def test_0089():
     assert_problem(89, '743')
 
 
+def test_0090():
+    assert_problem(90, '1217')
+
+
 def assert_problem(problem: int, expected: str, *args):
     args_str = ' '.join(str(arg) for arg in args)
     assert getoutput(f'python problem_{problem:04}.py {args_str}') == expected
