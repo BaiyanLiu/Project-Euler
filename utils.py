@@ -2,7 +2,10 @@ from functools import lru_cache
 from itertools import count
 from math import sqrt
 from os import cpu_count
-from typing import Iterator, NamedTuple, Optional
+from typing import Iterator, NamedTuple, Optional, TypeVar
+
+
+T = TypeVar('T')
 
 
 class ContinuedFractionParams(NamedTuple):
@@ -62,7 +65,7 @@ def is_prime(n: int, primes: list[int]) -> bool:
     return True
 
 
-def list_to_chunks(lst: list[int]) -> list[list[int]]:
+def list_to_chunks(lst: list[T]) -> list[list[T]]:
     chunk_size = len(lst) // (chunks := cpu_count()) + 1
     return [lst[chunk_size * i:chunk_size * (i + 1)] for i in range(chunks)]
 
